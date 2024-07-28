@@ -22,14 +22,21 @@
 
 import pandas
 
-data = pandas.read_csv('./weather_data.csv')
-print(data)
+data = pandas.read_csv('./2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv')
 
-#          day  temp condition
-# 0     Monday    12     Sunny
-# 1    Tuesday    14      Rain
-# 2  Wednesday    15      Rain
-# 3   Thursday    14    Cloudy
-# 4     Friday    21     Sunny
-# 5   Saturday    22     Sunny
-# 6     Sunday    24     Sunny
+gray_squirrels_count = len(data[data['Primary Fur Color'] == 'Gray'])
+red_squirrels_count = len(data[data['Primary Fur Color'] == 'Cinnamon'])
+black_squirrels_count = len(data[data['Primary Fur Color'] == 'Black'])
+
+print(gray_squirrels_count)
+print(red_squirrels_count)
+print(black_squirrels_count)
+
+#constructing a Pandas Data Frame
+data_dict = {
+    'Fur Color': ['Gray', 'Cinnamon', 'Black'],
+    'Count': [gray_squirrels_count, red_squirrels_count, black_squirrels_count]
+}
+
+df = pandas.DataFrame(data_dict)
+df.to_csv('squirrel_count.csv')
